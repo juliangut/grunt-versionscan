@@ -1,0 +1,5 @@
+{
+    "require": {
+        "psecio/versionscan": "^1.4"
+    }
+}
