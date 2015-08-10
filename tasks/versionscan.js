@@ -16,6 +16,7 @@ module.exports = function(grunt) {
   var attributes = {
     phpVersion: 'php-version',
     sort: 'sort',
+    format: 'format',
     output: 'output'
   };
   var flags = {
@@ -27,7 +28,8 @@ module.exports = function(grunt) {
     var done = null;
 
     var config = this.options({
-      bin: 'versionscan'
+      bin: 'versionscan',
+      format: 'console'
     });
 
     if (config.phpVersion !== undefined && !/^[0-9]+((\.[0-9]+)?\.[0-9]+)?$/.test(config.phpVersion)) {
@@ -42,6 +44,13 @@ module.exports = function(grunt) {
         grunt.verbose.error();
         grunt.fail.warn('Sorting by ' + config.sort + ' is not valid.');
       }
+    }
+
+    config.format = config.format.replace(/^\s+|\s+$/g, '').toLowerCase();
+
+    if (['console', 'html', 'json', 'xml'].indexOf(config.format) === -1) {
+      grunt.verbose.error();
+      grunt.fail.warn('Format ' + config.format + ' is not supported.');
     }
 
     if (config.output !== undefined) {
@@ -60,10 +69,6 @@ module.exports = function(grunt) {
     cmd = path.normalize(config.bin) + ' scan';
 
     for (var attribute in attributes) {
-      if (['output'].indexOf(attribute) !== -1) {
-        continue;
-      }
-
       if (config[attribute] !== undefined) {
         cmd += ' --' + attributes[attribute] + '=' + config[attribute];
       }
@@ -88,7 +93,15 @@ module.exports = function(grunt) {
       if (config.output === undefined) {
         grunt.log.write(stdout);
       } else {
-        var outputFile = config.output + '/versionscan-output';
+        var outputFile = config.output + '/versionscan-output' + (config.format !== 'console' ? '.' + config.format : '');
+
+        if (config.format === 'html') {
+          var files = grunt.file.expand({ filter: 'isFile', cwd: config.output }, ['versionscan-output-+([0-9]).html']);
+          var generatedFile = config.output + '/' + files[files.length -1];
+
+          stdout = grunt.file.read(generatedFile);
+          grunt.file.delete(generatedFile);
+        }
 
         grunt.file.write(outputFile, stdout);
         grunt.log.write('Generating output file ' + outputFile);

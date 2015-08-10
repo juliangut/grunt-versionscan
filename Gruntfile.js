@@ -41,8 +41,9 @@ module.exports = function(grunt) {
       },
       custon_attributes: {
         options: {
-          phpVersion: '5.3.3',
+          phpVersion: '5.5',
           sort: 'risk',
+          format: 'html',
           output: './tmp',
           failOnly: false
         }

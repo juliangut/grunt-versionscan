@@ -63,6 +63,12 @@ Default value: `undefined`
 
 Sort results list be `cve` or `risk`
 
+#### options.format
+Type: `String`
+Default value: `'console'`
+
+Output report format. One of `console`, `html`, `json` or `xml`
+
 #### options.output
 Type: `String`
 Default value: `undefined`
@@ -77,6 +83,8 @@ Default value: `undefined`
 
 Whether only failing checks will be output.
 
+Output file name will be versionscan-output{.format} except for `console` format which won't have extension.
+
 ### Usage Example
 
 ```js
@@ -86,6 +94,7 @@ grunt.initConfig({
       options: {
         phpVersion: '5.3.3',
         sort: 'risk',
+        format: 'xml',
         failOnly: true
       }
     }
