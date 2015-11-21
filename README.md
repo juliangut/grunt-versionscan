@@ -1,4 +1,9 @@
-# grunt-versionscan
+[![Latest Version](https://img.shields.io/npm/v/grunt-versionscan.svg?style=flat-square)](https://npmjs.org/package/grunt-versionscan)
+[![License](https://img.shields.io/github/license/juliangut/grunt-versionscan.svg?style=flat-square)](https://github.com/juliangut/grunt-versionscan/blob/master/LICENSE)
+
+[![Total Downloads](https://img.shields.io/npm/dt/grunt-versionscan.svg?style=flat-square)](https://npmjs.org/package/grunt-versionscan)
+
+# versionscan Grunt plugin
 
 > Grunt plugin for running [versionscan](https://github.com/psecio/versionscan)
 
@@ -104,12 +109,10 @@ grunt.initConfig({
 
 ## Contributing
 
-Found a bug or have a feature request? [Please open a new issue](https://github.com/juliangut/grunt-versionscan/issues). Have a look at existing issues before
+Found a bug or have a feature request? [Please open a new issue](https://github.com/juliangut/grunt-versionscan/issues). Have a look at existing issues before.
 
 See file [CONTRIBUTING.md](https://github.com/juliangut/grunt-versionscan/blob/master/CONTRIBUTING.md)
 
 ## License
 
-### Release under BSD-3-Clause License.
-
-See file [LICENSE](https://github.com/juliangut/grunt-versionscan/blob/master/LICENSE) included with the source code for a copy of the license terms
+See file [LICENSE](https://github.com/juliangut/grunt-versionscan/blob/master/LICENSE) included with the source code for a copy of the license terms.
