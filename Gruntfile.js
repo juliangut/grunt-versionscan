@@ -2,13 +2,17 @@
  * grunt-versionscan
  * https://github.com/juliangut/grunt-versionscan
  *
- * Copyright (c) 2015 Julián Gutiérrez (juliangut@gmail.com)
+ * Copyright (c) 2016 Julián Gutiérrez (juliangut@gmail.com)
  * Licensed under the BSD-3-Clasue license.
  */
 
 'use strict';
 
 module.exports = function(grunt) {
+  require('time-grunt')(grunt);
+  require('load-grunt-tasks')(grunt);
+
+  grunt.loadTasks('tasks');
 
   grunt.initConfig({
     jshint: {
@@ -16,6 +20,16 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       all: [
+        'Gruntfile.js',
+        'tasks/**/*.js'
+      ]
+    },
+    jscs: {
+      options: {
+        config: '.jscsrc',
+        verbose: true
+      },
+      application: [
         'Gruntfile.js',
         'tasks/**/*.js'
       ]
@@ -39,7 +53,7 @@ module.exports = function(grunt) {
       },
       default_options: {
       },
-      custon_attributes: {
+      custom_attributes: {
         options: {
           phpVersion: '5.5',
           sort: 'risk',
@@ -51,12 +65,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadTasks('tasks');
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-mkdir');
-
   grunt.registerTask('default', ['jshint', 'clean', 'mkdir', 'versionscan']);
-
 };
