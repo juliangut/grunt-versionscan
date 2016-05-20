@@ -10,7 +10,7 @@
 
 module.exports = function(grunt) {
   require('time-grunt')(grunt);
-  require('load-grunt-tasks')(grunt);
+  require('jit-grunt')(grunt);
 
   grunt.loadTasks('tasks');
 
@@ -58,8 +58,7 @@ module.exports = function(grunt) {
           phpVersion: '5.5',
           sort: 'risk',
           format: 'html',
-          output: './tmp',
-          failOnly: false
+          output: './tmp'
         }
       }
     }

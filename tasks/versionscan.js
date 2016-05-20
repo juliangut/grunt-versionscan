@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     }
 
     for (var flag in flags) {
-      if (config[flag] !== undefined) {
+      if (config[flag] === true) {
         cmd += ' --' + flags[flag];
       }
     }
